@@ -1,0 +1,122 @@
+1.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>employee Display</title>
+</head>
+<body>
+<div id="emp"></div>
+<script>
+var employees = [
+{ name: "John", salary: 50000 },
+{ name: "Alice", salary: 60000 },
+{ name: "Bob", salary: 55000 },
+{ name: "Jane", salary: 70000 }
+];
+employees.sort(function(a, b) { return b.salary - a.salary;
+});
+ 
+console.log("Employees sorted by salary (descending order):"); employees.forEach(function(employee) {
+console.log("Name: " + employee.name + ", Salary: " + employee.salary);
+});
+</script>
+</body>
+
+2.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Remove Numbers from String</title>
+<script>
+function removeNumbers() {
+let str = document.getElementById("inputString").value; let result = str.replace(/\d/g, ''); document.getElementById("result").textContent = result;
+</script>
+</head>
+<body>
+<h1>Remove Numbers from String</h1>
+ <label for="inputString">Enter a string:</label>
+<input type="text" id="inputString">
+<button onclick="removeNumbers()">Remove Numbers</button>
+<p>Result: <span id="result"></span></p>
+</body>
+</html>
+
+3.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Add New Prefix</title>
+<script>
+function addNewPrefix() {
+let originalString = document.getElementById("originalString").value; let resultElement = document.getElementById("result");
+if (originalString.startsWith("New!")) {
+resultElement.textContent = originalString;
+} else {
+resultElement.textContent = "New!" + originalString;
+}
+}
+</script>
+</head>
+<body>
+<h1>Add New Prefix</h1>
+<label for="originalString">Enter a string:</label>
+<input type="text" id="originalString">
+<button onclick="addNewPrefix()">Add New Prefix</button>
+<p>Result: <span id="result"></span></p>
+</body>
+</html>
+
+
+4.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>CSV to 2D Array Converter</title>
+<script>
+function csvTo2DArray(csvString){ let rows = csvString.split('\n');
+let array2D = [];
+ for (let row of rows) { 
+let values = row.split(',');
+array2D.push(values);
+}
+return array2D;
+}
+function convertCSV() {
+let csvString = document.getElementById("csvInput").value; let resultElement = document.getElementById("result"); let array2D = csvTo2DArray(csvString);
+resultElement.textContent = JSON.stringify(array2D);
+}
+</script>
+</head>
+<body>
+<h1>CSV to 2D Array Converter</h1>
+<label for="csvInput">Enter CSV string:</label><br>
+<textarea id="csvInput" rows="5" cols="50"></textarea><br>
+<button onclick="convertCSV()">Convert</button><br>
+<p>Result:</p>
+<pre id="result"></pre>
+</body>
+</html>
+
+
+5.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Welcome Page</title>
+<script>
+window.onload = function() {
+var userName = prompt("Please enter your name:"); alert("Welcome, " + userName + "!");
+var currentDate = new Date();
+var options = { year: 'numeric', month: 'long', day: 'numeric' };
+var formattedDate = currentDate.toLocaleDateString('en-US', options); document.getElementById('currentDate').textContent = formattedDate;
+var lastModifiedDate = document.lastModified; document.getElementById('lastModified').textContent = lastModifiedDate;
+};
+</script>
+</head>
+<body>
+ <h1>Welcome Page</h1>
+<p>Hello, <span id="currentDate"></span></p>
+<p>Last modified: <span id="lastModified"></span></p>
+</body>
+</html>
+
