@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>employee Display</title>
+</head>
+<body>
+<div id="emp"></div>
+<script>
+var employees = [
+{ name: "John", salary: 50000 },
+{ name: "Alice", salary: 60000 },
+{ name: "Bob", salary: 55000 },
+{ name: "Jane", salary: 70000 }
+];
+employees.sort(function(a, b) { return b.salary - a.salary;
+});
+ 
+console.log("Employees sorted by salary (descending order):"); employees.forEach(function(employee) {
+console.log("Name: " + employee.name + ", Salary: " + employee.salary);
+});
+</script>
+</body>
