@@ -1,0 +1,88 @@
+
+
+1.
+<!DOCTYPE html>
+<html>
+<head>
+<title>Jquery</title>
+<metacharset="UTF-8">
+<metaname="viewport"content="width=device-width,initial-scale=1.0">
+<scriptsrc="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+body {
+font-family:Arial,sans-serif; margin: 0;
+padding:0;
+}
+.container{
+max-width:600px; margin:50pxauto; text-align: center;
+}
+input[type="text"]{ padding: 10px; width: 70%;
+border:1pxsolid#ccc; border-radius: 5px;
+
+font-size:16px;
+}
+button{
+padding: 10px 20px; background-color:#007bff; color: #fff;
+border: none; border-radius:5px; cursor: pointer; font-size: 16px;
+}
+button:hover{
+background-color:#0056b3;
+}
+.error-message{ color: red;
+margin-top:10px;
+}
+</style>
+</head>
+<body>
+<divclass="container">
+<inputtype="text"id="inputField">
+<buttonid="submitButton">Submit</button>
+<divid="outputContainer"></div>
+
+<divid="errorContainer"class="error-message"></div>
+</div>
+
+
+<script>
+$(document).ready(function(){
+$("#submitButton").click(function(){
+varinputValue=$("#inputField").val().trim(); var outputContainer = $("#outputContainer"); var errorContainer = $("#errorContainer");
+
+if(inputValue!=="") {
+outputContainer.html("<p>Yourinput:"+inputValue+"</p>"); errorContainer.html("");
+}else{
+errorContainer.html("<b>PleaseEnterSomething.</b>"); outputContainer.html("");
+}
+});
+});
+</script>
+</body>
+</html>
+
+
+2.
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Qnno2</title>
+<metacharset="UTF-8">
+<metaname="viewport"content="width=device-width,initial-scale=1.0">
+<scriptsrc="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<divclass="container">
+<inputtype="text"id="textInput"placeholder="Entertext...">
+<buttonid="countButton">CountWords</button>
+<divid="wordCountResult"></div>
+</div>
+<script>
+document.getElementById("countButton").addEventListener("click",function(){ var inputText = document.getElementById("textInput").value.trim();
+varwordCount=inputText.split(/\s+/).filter(function(word){ return word.length > 0;
+}).length;
+document.getElementById("wordCountResult").textContent="Numberofwords:"+ wordCount;
+});
+</script>
+</body>
+</html>
+
