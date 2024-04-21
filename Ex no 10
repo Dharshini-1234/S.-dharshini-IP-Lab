@@ -1,0 +1,118 @@
+
+1.
+<?php
+
+// Function to find the largest number among three numbers
+function findLargest($num1, $num2, $num3) {
+    $largest = $num1; // Assume the first number is the largest initially
+    
+    // Check if the second number is larger
+    if ($num2 > $largest) {
+        $largest = $num2;
+    }
+    
+    // Check if the third number is larger
+    if ($num3 > $largest) {
+        $largest = $num3;
+    }
+    
+    return $largest; // Return the largest number
+}
+
+// Get input from the user
+$num1 = readline("Enter the first number: ");
+$num2 = readline("Enter the second number: ");
+$num3 = readline("Enter the third number: ");
+
+// Call the function to find the largest number
+$largestNumber = findLargest($num1, $num2, $num3);
+
+// Display the result
+echo "The largest number is: " . $largestNumber;
+
+?>
+2.
+ <?php
+class Product {
+    public $name;
+    public $price;
+    public $quantity;
+    public $category;
+
+    public function __construct($name, $price, $quantity, $category) {
+        $this->name = $name;
+        $this->price = $price;
+        $this->quantity = $quantity;
+        $this->category = $category;
+    }
+
+    public function addToInventory($inventory) {
+        $inventory[] = $this;
+        return $inventory;
+    }
+
+    public function updateProduct($inventory, $productName, $newPrice, $newQuantity, $newCategory) {
+        foreach ($inventory as $key => $product) {
+            if ($product->name == $productName) {
+                $product->price = $newPrice;
+                $product->quantity = $newQuantity;
+                $product->category = $newCategory;
+                $inventory[$key] = $product;
+                break;
+            }
+        }
+        return $inventory;
+    }
+
+    public function deleteFromInventory($inventory, $productName) {
+        foreach ($inventory as $key => $product) {
+            if ($product->name == $productName) {
+                unset($inventory[$key]);
+                break;
+            }
+        }
+        return $inventory;
+    }
+}
+$product1 = new Product("Phone", 500, 10, "Electronics");
+$product2 = new Product("Book", 20, 50, "Books");
+
+$inventory = [];
+$inventory = $product1->addToInventory($inventory);
+$inventory = $product2->addToInventory($inventory);
+
+$inventory = $product1->updateProduct($inventory, "Phone", 500, 15, "Electronics");
+
+$inventory = $product2->deleteFromInventory($inventory, "Book");
+
+print_r($inventory);
+?>
+
+3.
+ <?php
+function isArmstrong($number) {
+    $sum = 0;
+    $temp = $number;
+    $numDigits = strlen($number);
+    
+    while ($temp != 0) {
+        $digit = $temp % 10;
+        $sum += pow($digit, $numDigits);
+        $temp = (int)($temp / 10);
+    }
+    
+    if ($sum == $number) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+$number = 153; // Change this to the number you want to check
+if (isArmstrong($number)) {
+    echo "$number is an Armstrong number.";
+} else {
+    echo "$number is not an Armstrong number.";
+}
+?>
+
