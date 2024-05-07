@@ -1,0 +1,81 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+<movies>
+    <movie>
+        <title>The Shawshank Redemption</title>
+        <director>Frank Darabont</director>
+        <genre>Drama</genre>
+        <year>1994</year>
+        <rating>9</rating>
+        <available>yes</available>
+    </movie>
+    <movie>
+        <title>The Godfather</title>
+        <director>Francis Ford Coppola</director>
+        <genre>Crime</genre>
+        <year>1972</year>
+        <rating>9</rating>
+        <available>yes</available>
+    </movie>
+
+<movie>
+        <title>The Dark knight</title>
+        <director>Christopher Nolan</director>
+        <genre>Crime</genre>
+        <year>1972</year>
+        <rating>9.0</rating>
+        <available>yes</available>
+    </movie>
+<movie>
+        <title>pulp fiction</title>
+        <director>Quentin Tarantino</director>
+        <genre>Crime</genre>
+        <year>1972</year>
+        <rating>8.9</rating>
+        <available>yes</available>
+    </movie>
+
+<movie>
+        <title>Fight Club</title>
+        <director>David Fincher</director>
+        <genre>Crime</genre>
+        <year>1972</year>
+        <rating>8.8</rating>
+        <available>yes</available>
+    </movie>
+</movies>
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+  <xsl:template match="/">
+    <html>
+      <body>
+        <h2>Movies</h2>
+        <table border="1">
+          <tr bgcolor="#CCCCCC">
+            <th>Title</th>
+            <th>Director</th>
+            <th>Rating</th>
+          </tr>
+          <xsl:for-each select="movies/movie">
+            <xsl:if test="rating &gt;= 8">
+              <tr bgcolor="#FFFF00">
+                <td><xsl:value-of select="title"/></td>
+                <td><xsl:value-of select="director"/></td>
+                <td><xsl:value-of select="rating"/></td>
+              </tr>
+            </xsl:if>
+            <xsl:if test="rating &lt; 8">
+              <tr>
+                <td><xsl:value-of select="title"/></td>
+                <td><xsl:value-of select="director"/></td>
+                <td><xsl:value-of select="rating"/></td>
+              </tr>
+            </xsl:if>
+          </xsl:for-each>
+        </table>
+      </body>
+    </html>
+  </xsl:template>
+</xsl:stylesheet>
