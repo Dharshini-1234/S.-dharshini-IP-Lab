@@ -1,0 +1,77 @@
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Path("/customers")
+public class CustomerService {
+
+    // JDBC URL, username, and password of MySQL server
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/customerdb";
+    private static final String JDBC_USER = "root";
+    private static final String JDBC_PASSWORD = "password";
+
+    // JDBC variables for opening, closing and managing connection
+    private static Connection connection;
+    private static Statement statement;
+
+    static {
+        try {
+            // Connect to MySQL database
+            connection = DriverManager.getConnection(JDBC_URL, JDBC_USER, JDBC_PASSWORD);
+            statement = connection.createStatement();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to update customer information
+    @PUT
+    @Path("/{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public void updateCustomer(@PathParam("id") int id, Customer customer) {
+        try {
+            String query = "UPDATE customers SET name = ?, email = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, customer.getName());
+            preparedStatement.setString(2, customer.getEmail());
+            preparedStatement.setInt(3, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Customer> getCustomers() {
+        List<Customer> customers = new ArrayList<>();
+        try {
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM customers");
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
+                String email = resultSet.getString("email");
+                customers.add(new Customer(id, name, email));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return customers;
+    }
+}
+
+
+public class Customer {
+    private int id;
+    private String name;
+    private String email;
+
+    public Customer(int id, String name, String email) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+    }
+}
+
+
